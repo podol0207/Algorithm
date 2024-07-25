@@ -27,20 +27,23 @@ public class Main {
                     bw.write(stack.size() + "\n");
                     break;
                 case "empty":
-                    if(stack.empty()) {
-                        bw.write(1 + "\n");
-                    } else bw.write(0 + "\n");
+                    if(stack.empty()){
+                         bw.write(1 + "\n");
+                    }
+                    else {
+                        bw.write(0 + "\n");
+                    }
                     break;
                 case "top":
                     if(stack.empty()) {
                         bw.write(-1 + "\n");
-                    } else {
+                    }
+                    else {
                         bw.write(stack.peek() + "\n");
                     }
                     break;
             }
         }
-
         bw.close();
     }
 }
