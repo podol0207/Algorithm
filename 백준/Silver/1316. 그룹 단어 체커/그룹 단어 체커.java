@@ -1,34 +1,41 @@
 import java.io.*;
 
 public class Main {
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        int N = Integer.parseInt(br.readLine());
+
         int count = 0;
-        
-        for(int i=0; i<N; i++) {
-            String word = br.readLine();
-            boolean[] check = new boolean[26];
-            int prev = -1;
-            boolean found = true;
-            for(int j=0; j<word.length(); j++) {
-                int now = word.charAt(j) - 'a';
-                if(prev != now) {
-                    if(check[now] == false) {
-                        check[now] = true;
-                        prev = now;
-                    } else {
-                        found = false;
-                        break;
-                    }
-                }
-            }
-            if(found) {
+        int n = Integer.parseInt(br.readLine());
+        for(int i=0; i<n; i++) {
+            if(check() == true) {
                 count++;
             }
         }
         bw.write(count + "\n");
+
+        bw.flush();
         bw.close();
+    }
+
+    private static boolean check() throws IOException {
+        boolean[] check = new boolean[26];
+        int prev = 0;
+        String word = br.readLine();
+
+        for(int i=0; i<word.length(); i++) {
+            int now = word.charAt(i);
+
+            if(prev != now) {
+                if(check[now-'a'] == false) {
+                    check[now-'a'] = true;
+                    prev = now;
+                }
+                else {
+                    return false;
+                }
+            } 
+        }
+        return true;
     }
 }
