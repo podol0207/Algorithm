@@ -5,19 +5,22 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringTokenizer st;
-        int N = Integer.parseInt(br.readLine());
-        st = new StringTokenizer(br.readLine());
 
-        double[] arr = new double[N];
-        double max = Integer.MIN_VALUE;
-        double total = 0.0;
-        for (int i=0; i<N; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
-            if(arr[i] > max) max=arr[i];
-            total += arr[i];
+        int n = Integer.parseInt(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int max = -1;
+        double sum = 0;
+        int[] arr = new int[n];
+        for(int i=0; i<n; i++) {
+            int a = Integer.parseInt(st.nextToken());
+            arr[i] = a;
+            if(max < a) max = a;
         }
-        bw.write(String.format("%.2f", (total/max)*100/N));
+        for(int i=0; i<n; i++) {
+            sum += (double) arr[i] / max * 100;
+        }
+        System.out.print(sum/n);
+        bw.flush();
         bw.close();
     }
 }
